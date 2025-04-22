@@ -1,4 +1,3 @@
-from loja import models
 from loja.models import *
 
 
@@ -9,4 +8,4 @@ class Fabricante(models.Model):
     
     def __str__(self):
 
-        return '{}'.format(self. Fabricante)
+        return f"{self.Fabricante}"
