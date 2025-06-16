@@ -172,4 +172,4 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-slides.txt
+# Pagina que parei no slide 72

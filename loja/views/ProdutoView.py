@@ -55,7 +55,7 @@ def edit_produto_view(request, id=None):
 
 def edit_produto_postback(request, id=None):
     if request.method == 'POST':
-# Salva dados editados
+    # Salva dados editados
         id = request.POST.get("id")
         produto = request.POST.get("Produto")
         destaque = request.POST.get("destaque")
@@ -83,3 +83,17 @@ def edit_produto_postback(request, id=None):
         print("Erro salvando edição de produto: %s" % e)
     
     return redirect("/produto")
+
+def details_produto_view(request, id=None):
+    # Processa o evento GET gerado pela action
+    produtos = Produto.objects.all()
+    
+    if id is not None:
+        produtos = produtos.filter(id=id)
+    
+    produto = produtos.first()
+    
+    print(produto)
+    
+    context = {'produto': produto}
+    return render(request, template_name='produto/produto-details.html', context=context, status=200)
