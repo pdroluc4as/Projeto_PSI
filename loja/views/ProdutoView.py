@@ -71,8 +71,8 @@ def edit_produto_postback(request, id=None):
         promocao = request.POST.get("promocao")
         msgPromocao = request.POST.get("msgPromocao")
         #adicione a requisição do valor do campo post
-        categoria = request.POST.get("CategoriaFk")
-        fabricante = request.POST.get("FabricanteFk")
+        categoria = request.POST.get("CategoriaFk") # armazena o id da categoria
+        fabricante = request.POST.get("FabricanteFk") # armazena o id do fabricante
         print("postback")
         print(id)
         print(produto)
@@ -85,7 +85,7 @@ def edit_produto_postback(request, id=None):
         obj_produto.Produto = produto
         obj_produto.destaque = (destaque is not None)
         obj_produto.promocao = (promocao is not None)
-        obj_produto.fabricante = Fabricante.objects.filter(id=fabricante).first()
+        obj_produto.fabricante = Fabricante.objects.filter(id=fabricante).first() # aqui ele está pegando o id fabricante que o usuario enviou e salvando
         obj_produto.categoria = Categoria.objects.filter(id=categoria).first()
         
         if msgPromocao is not None:
