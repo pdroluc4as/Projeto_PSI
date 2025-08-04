@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404 # type: ignore
 from loja.models import Produto, Fabricante, Categoria
 from datetime import timedelta, datetime
-from django.utils import timezone
-from django.core.files.storage import FileSystemStorage
-
+from django.utils import timezone # type: ignore
+from django.core.files.storage import FileSystemStorage # type: ignore
+ 
 def list_produto_view(request, id=None):
 
     produto = request.GET.get("produto")
@@ -135,6 +135,9 @@ def delete_produto_postback(request, id=None):
         print("postback-delete")
         print(id)
         try:
+            prod = get_object_or_404(Produto, pk=id)
+            if prod.image:
+                prod.image.delete(save=False)
             Produto.objects.filter(id=id).delete()
             print("Produto %s excluido com sucesso" % produto)
         except Exception as e:
