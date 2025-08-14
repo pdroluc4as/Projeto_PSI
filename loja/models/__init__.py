@@ -13,4 +13,4 @@ PERFIL = (
     (1, "Admin"),
     (2, "Usuario"),
 )
-from .usuario import Usuario
+from .Usuario import Usuario
